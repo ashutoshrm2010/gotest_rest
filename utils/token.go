@@ -82,7 +82,7 @@ func getUserName(accessToken string) (string, error) {
     defer db.Close()
     var username string
 
-    err := db.QueryRow("SELECT UserName FROM" + " " + "accessToken" + " " + "WHERE AccessToken=?", accessToken).Scan(&username)
+    err := db.QueryRow("SELECT UserName FROM" + " " +TABLE_TOKEN + " " + "WHERE AccessToken=?", accessToken).Scan(&username)
     if err != nil {
         return "", errors.New("Invalid accessToken")
     }
@@ -110,7 +110,7 @@ func getUserData1(userName string) (*model.User, error) {
         createdOn string
     )
     fmt.Println("userName ",userName)
-    rows, err := db.Query("select * from" + " " + "user" + " " + "where UserName = ?", userName)
+    rows, err := db.Query("select * from" + " " + TABLE_USER + " " + "where UserName = ?", userName)
     if err != nil {
         fmt.Println("err ",err)
     }

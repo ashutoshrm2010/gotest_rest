@@ -7,10 +7,12 @@ import (
     "flag"
 )
 
+//main
 func main()  {
     var application = &utils.Application{}
     goji.Use(application.ApplyAuth)
     route.PrepareRoutes(application)
+    utils.PrepareConnection()
     flag.Set("bind","localhost:8080")
     goji.Serve()
 
